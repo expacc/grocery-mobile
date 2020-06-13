@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/Users/birusaurus/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/birusaurus/Downloads/codecanyon-oF6hO82s-grocery-food-pharmacy-store-delivery-mobile-app-with-admin-panel/flutter_application"
+export "FLUTTER_APPLICATION_PATH=/Users/birusaurus/Documents/GitHub/grocery-mobile"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
