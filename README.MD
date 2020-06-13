@@ -9,3 +9,9 @@
 7. Mainan Anak & Perlatan Olahraga
 8. Jasa Service Peralatan
 9. Kuliner
+
+# Generate key store
+
+```bash
+keytool -genkey -v -keystore NAME.key -alias ALIAS -keyalg RSA -keysize 2048 -validity 10000
+```
