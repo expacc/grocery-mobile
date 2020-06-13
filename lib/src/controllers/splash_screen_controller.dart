@@ -65,11 +65,11 @@ class SplashScreenController extends ControllerMVC {
     }
   }
 
-  static Future<dynamic> notificationOnBackgroundMessage(
-      Map<String, dynamic> message) async {
-    print('AppPushs notificationOnBackgroundMessage : $message');
-    return Future<void>.value();
-  }
+  // static Future<dynamic> notificationOnBackgroundMessage(
+  //     Map<String, dynamic> message) async {
+  //   print('AppPushs notificationOnBackgroundMessage : $message');
+  //   return Future<void>.value();
+  // }
 
   Future notificationOnResume(Map<String, dynamic> message) async {
     print(CustomTrace(StackTrace.current, message: message['data']['id']));
