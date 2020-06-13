@@ -74,10 +74,10 @@ class _SettingsWidgetState extends StateMVC<SettingsWidget> {
                               height: 55,
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(300),
-                                onTap: () {
-                                  Navigator.of(context)
-                                      .pushNamed('/Tabs', arguments: 1);
-                                },
+                                // onTap: () {
+                                //   Navigator.of(context)
+                                //       .pushNamed('/Tabs', arguments: 1);
+                                // },
                                 child: CircleAvatar(
                                   backgroundImage: NetworkImage(
                                       currentUser.value.image.thumb),
