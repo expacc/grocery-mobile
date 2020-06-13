@@ -1,5 +1,5 @@
-name: markets
-description: markets
+name: toko
+description: toko
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -38,6 +38,8 @@ dependencies:
   location: 3.0.2
   flutter_inappbrowser: 2.0.2
   url_launcher: 5.4.10
+  firebase_core: ^0.4.5 # add dependency for Firebase Core
+  firebase_analytics: ^5.0.15 # add dependency for Google Analytics for Firebase
   firebase_messaging: 6.0.16
   cached_network_image: 2.2.0+1
   fluttertoast: 4.0.1

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,10 +26,13 @@ class SplashScreenController extends ControllerMVC {
   @override
   void initState() {
     super.initState();
-    firebaseMessaging.requestNotificationPermissions(const IosNotificationSettings(sound: true, badge: true, alert: true));
+    firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true, badge: true, alert: true));
     configureFirebase(firebaseMessaging);
     settingRepo.setting.addListener(() {
-      if (settingRepo.setting.value.appName != null && settingRepo.setting.value.appName != '' && settingRepo.setting.value.mainColor != null) {
+      if (settingRepo.setting.value.appName != null &&
+          settingRepo.setting.value.appName != '' &&
+          settingRepo.setting.value.mainColor != null) {
         progress.value["Setting"] = 41;
         // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
         progress?.notifyListeners();
@@ -51,6 +55,7 @@ class SplashScreenController extends ControllerMVC {
     try {
       _firebaseMessaging.configure(
         onMessage: notificationOnMessage,
+        // onBackgroundMessage: Platform.isAndroid ? notificationOnBackgroundMessage : null,
         onLaunch: notificationOnLaunch,
         onResume: notificationOnResume,
       );
@@ -60,11 +65,18 @@ class SplashScreenController extends ControllerMVC {
     }
   }
 
+  static Future<dynamic> notificationOnBackgroundMessage(
+      Map<String, dynamic> message) async {
+    print('AppPushs notificationOnBackgroundMessage : $message');
+    return Future<void>.value();
+  }
+
   Future notificationOnResume(Map<String, dynamic> message) async {
     print(CustomTrace(StackTrace.current, message: message['data']['id']));
     try {
       if (message['data']['id'] == "orders") {
-        settingRepo.navigatorKey.currentState.pushReplacementNamed('/Pages', arguments: 3);
+        settingRepo.navigatorKey.currentState
+            .pushReplacementNamed('/Pages', arguments: 3);
       }
     } catch (e) {
       print(CustomTrace(StackTrace.current, message: e));
@@ -77,7 +89,8 @@ class SplashScreenController extends ControllerMVC {
       if (messageId != message['google.message_id']) {
         if (message['data']['id'] == "orders") {
           await settingRepo.saveMessageId(message['google.message_id']);
-          settingRepo.navigatorKey.currentState.pushReplacementNamed('/Pages', arguments: 3);
+          settingRepo.navigatorKey.currentState
+              .pushReplacementNamed('/Pages', arguments: 3);
         }
       }
     } catch (e) {
