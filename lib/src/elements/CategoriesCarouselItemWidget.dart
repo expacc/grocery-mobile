@@ -27,8 +27,7 @@ class CategoriesCarouselItemWidget extends StatelessWidget {
           Hero(
             tag: category.id,
             child: Container(
-              margin:
-                  EdgeInsetsDirectional.only(start: this.marginLeft, end: 20),
+              margin: EdgeInsetsDirectional.only(start: 0, end: 0),
               width: 80,
               height: 80,
               decoration: BoxDecoration(
@@ -61,7 +60,7 @@ class CategoriesCarouselItemWidget extends StatelessWidget {
           ),
           SizedBox(height: 5),
           Container(
-            margin: EdgeInsetsDirectional.only(start: this.marginLeft, end: 20),
+            margin: EdgeInsetsDirectional.only(start: 0, end: 0),
             child: Text(
               category.name,
               overflow: TextOverflow.ellipsis,

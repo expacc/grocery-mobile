@@ -13,6 +13,7 @@ import '../elements/SearchBarWidget.dart';
 import '../elements/ShoppingCartButtonWidget.dart';
 import '../repository/settings_repository.dart' as settingsRepo;
 import '../repository/user_repository.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeWidget extends StatefulWidget {
   final GlobalKey<ScaffoldState> parentScaffoldKey;
@@ -24,6 +25,26 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends StateMVC<HomeWidget> {
+  /*****************************************************
+  * SLIDER HEADER INIT
+  ****************************************************/
+  int _currentIndex = 0;
+  List cardList = [
+    Item1(),
+    Item2(),
+    Item3(),
+  ];
+  List<T> maps<T>(List list, Function handler) {
+    List<T> result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+    return result;
+  }
+
+  /*****************************************************
+  * 
+  ****************************************************/
   HomeController _con;
 
   _HomeWidgetState() : super(HomeController()) {
@@ -79,6 +100,62 @@ class _HomeWidgetState extends StateMVC<HomeWidget> {
                     widget.parentScaffoldKey.currentState.openEndDrawer();
                   },
                 ),
+              ),
+              /*****************************************************
+              * Widget Slider
+              ****************************************************/
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+              ),
+              CarouselSlider(
+                height: 200.0,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                pauseAutoPlayOnTouch: Duration(seconds: 10),
+                aspectRatio: 2.0,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                items: cardList.map((card) {
+                  return Builder(builder: (BuildContext context) {
+                    return Container(
+                      height: MediaQuery.of(context).size.height * 0.30,
+                      width: MediaQuery.of(context).size.width,
+                      child: Card(
+                        color: Colors.blueAccent,
+                        child: card,
+                      ),
+                    );
+                  });
+                }).toList(),
+              ),
+              /*****************************************************
+              * Category
+              ****************************************************/
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: ListTile(
+                  dense: true,
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
+                  leading: Icon(
+                    Icons.category,
+                    color: Theme.of(context).hintColor,
+                  ),
+                  title: Text(
+                    S.of(context).product_categories,
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                ),
+              ),
+              /*****************************************************
+              * Category Card
+              ****************************************************/
+              CategoriesCarouselWidget(
+                categories: _con.categories,
               ),
               /*****************************************************
               * Top Markets
@@ -165,30 +242,6 @@ class _HomeWidgetState extends StateMVC<HomeWidget> {
               //     productsList: _con.trendingProducts,
               //     heroTag: 'home_product_carousel'),
               /*****************************************************
-              * Category
-              ****************************************************/
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ListTile(
-                  dense: true,
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  leading: Icon(
-                    Icons.category,
-                    color: Theme.of(context).hintColor,
-                  ),
-                  title: Text(
-                    S.of(context).product_categories,
-                    style: Theme.of(context).textTheme.headline4,
-                  ),
-                ),
-              ),
-              /*****************************************************
-              * Category Card
-              ****************************************************/
-              CategoriesCarouselWidget(
-                categories: _con.categories,
-              ),
-              /*****************************************************
               * Popular
               ****************************************************/
               // Padding(
@@ -244,6 +297,114 @@ class _HomeWidgetState extends StateMVC<HomeWidget> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/*****************************************************
+* SLIDER CLASS
+****************************************************/
+class Item1 extends StatelessWidget {
+  const Item1({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [
+              0.3,
+              1
+            ],
+            colors: [
+              Color(0xffffffff),
+              Color(0xffffffff),
+            ]),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: Image.asset(
+              'assets/img/1.jpg',
+              height: 200,
+              fit: BoxFit.fill,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Item2 extends StatelessWidget {
+  const Item2({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [
+              0.3,
+              1
+            ],
+            colors: [
+              Color(0xffffffff),
+              Color(0xffffffff),
+            ]),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: Image.asset(
+              'assets/img/2.jpg',
+              height: 200,
+              fit: BoxFit.fill,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Item3 extends StatelessWidget {
+  const Item3({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [
+              0.3,
+              1
+            ],
+            colors: [
+              Color(0xffffffff),
+              Color(0xffffffff),
+            ]),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: Image.asset(
+              'assets/img/3.jpg',
+              height: 200,
+              fit: BoxFit.fill,
+            ),
+          ),
+        ],
       ),
     );
   }
