@@ -1,4 +1,4 @@
-package com.smartersvision.markets
+package com.pasarbinauf.toko
 
 import io.flutter.app.FlutterApplication
 import io.flutter.plugin.common.PluginRegistry

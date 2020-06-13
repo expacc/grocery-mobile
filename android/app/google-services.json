@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:614936873905:android:39b6d2c889e64b5e690b90",
         "android_client_info": {
-          "package_name": "com.smartersvision.markets"
+          "package_name": "com.pasarbinauf.toko"
         }
       },
       "oauth_client": [
@@ -39,7 +39,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:614936873905:android:a769e75a128e628f690b90",
         "android_client_info": {
-          "package_name": "com.smartersvision.markets_driver"
+          "package_name": "com.pasarbinauf.toko_driver"
         }
       },
       "oauth_client": [
