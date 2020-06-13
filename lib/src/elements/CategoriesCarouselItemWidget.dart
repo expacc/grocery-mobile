@@ -9,7 +9,8 @@ import '../models/route_argument.dart';
 class CategoriesCarouselItemWidget extends StatelessWidget {
   double marginLeft;
   Category category;
-  CategoriesCarouselItemWidget({Key key, this.marginLeft, this.category}) : super(key: key);
+  CategoriesCarouselItemWidget({Key key, this.marginLeft, this.category})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,8 @@ class CategoriesCarouselItemWidget extends StatelessWidget {
       splashColor: Theme.of(context).accentColor.withOpacity(0.08),
       highlightColor: Colors.transparent,
       onTap: () {
-        Navigator.of(context).pushNamed('/Category', arguments: RouteArgument(id: category.id));
+        Navigator.of(context)
+            .pushNamed('/Category', arguments: RouteArgument(id: category.id));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -25,19 +27,25 @@ class CategoriesCarouselItemWidget extends StatelessWidget {
           Hero(
             tag: category.id,
             child: Container(
-              margin: EdgeInsetsDirectional.only(start: this.marginLeft, end: 20),
+              margin:
+                  EdgeInsetsDirectional.only(start: this.marginLeft, end: 20),
               width: 80,
               height: 80,
               decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                  boxShadow: [BoxShadow(color: Theme.of(context).focusColor.withOpacity(0.2), offset: Offset(0, 2), blurRadius: 7.0)]),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).focusColor.withOpacity(0.2),
+                        offset: Offset(0, 2),
+                        blurRadius: 7.0)
+                  ]),
               child: Padding(
                 padding: const EdgeInsets.all(15),
                 child: category.image.url.toLowerCase().endsWith('.svg')
                     ? SvgPicture.network(
                         category.image.url,
-                        color: Theme.of(context).accentColor,
+                        // color: Theme.of(context).accentColor,
                       )
                     : CachedNetworkImage(
                         fit: BoxFit.cover,
